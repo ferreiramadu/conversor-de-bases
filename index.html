@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <!--IMPORT FONTS-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- IMPORT FAVICON -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Conversor</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Olá seja bem vindo ao conversor de bases</h1>
+        <div id="etapa0">
+            <p>Para começar insira o número decimal a ser convertido</p>
+            <input id="valorDecimal" type="number" placeholder="Digite o valor em decimal">
+            <span id="spanValorDecimal" style="display: none;">o número precisa estar preenchido</span>
+            <button onclick="etapaIncrement()">CONTINUAR</button>
+        </div>
+
+        <div id="etapa1" style="display: none;">
+            <p>Selecione a base a ser convertida</p>
+            <select id="optionBase">
+                <option value="0">Selecione a base</option>
+                <option value="1">Base binária</option>
+                <option value="2">Base octal</option>
+                <option value="3">Base Hexadecimal</option>
+            </select>
+            <span id="spanOptionBase" style="display: none;">A base precisa estar preenchida</span>
+            <button onclick="etapaIncrement()">CONTINUAR</button>
+        </div>
+
+        <div id="etapa2" style="display: none;">
+            <p>O resultado da conversão foi de:</p>
+            <h3 id="resultado">0</h3>
+            <button onclick="clearEtapa()">VOLTAR</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var etapa = 0
+    var isClickedButton = false
+
+    function etapaIncrement() {
+        isClickedButton = true
+        if (etapa == 0 && valorDecimal.value.length) {
+            etapa++
+            etapa0.style.display = 'flex'
+            etapa1.style.display = 'none'
+            etapa2.style.display = 'none'
+            isClickedButton = false
+        }
+
+        if (etapa == 1) {
+            etapa++
+            etapa0.style.display = 'none'
+            etapa1.style.display = 'flex'
+            etapa2.style.display = 'none'
+        }
+
+        if (etapa == 2 && optionBase.value != 0) {
+            converter()
+            etapa0.style.display = 'none'
+            etapa1.style.display = 'none'
+            etapa2.style.display = 'flex'
+        }
+
+        if (!valorDecimal.value.length && isClickedButton) {
+            valorDecimal.style = 'border: 1px solid red; color: red;'
+            spanValorDecimal.style = 'display: flex'
+        }
+
+        if (etapa == 2 && optionBase.value == 0 && isClickedButton) {
+            console.log("aquii")
+            optionBase.style = 'border: 1px solid red; color: red;'
+            spanOptionBase.style = 'display: flex'
+        }
+    }
+
+    function converter() {
+        var inputValue = Number(valorDecimal.value)
+        if (optionBase.value == 1) {
+            let binaria = inputValue.toString(2);
+            resultado.innerHTML = `${binaria}`;
+        } else if (optionBase.value == 2) {
+            let octal = inputValue.toString(8);
+            resultado.innerHTML = `${octal}`;
+        } else {
+            let hexadecimal = inputValue.toString(16);
+            resultado.innerHTML = `${hexadecimal.toUpperCase()}`;
+        }
+    }
+
+    function clearEtapa() {
+        etapa = 0
+        valorDecimal.value = ''
+        optionBase.value = 0
+        isClickedButton = false
+
+        etapa0.style.display = 'flex'
+        etapa1.style.display = 'none'
+        etapa2.style.display = 'none'
+
+        valorDecimal.style = 'border: 1px solid #DDDDDD; color: #DDDDDD;'
+        spanValorDecimal.style = 'display: none'
+
+        optionBase.style = 'border: 1px solid #DDDDDD; color: #DDDDDD;'
+        spanOptionBase.style = 'display: none'
+    }
+</script>

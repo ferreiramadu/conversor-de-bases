@@ -1,0 +1,161 @@
+body {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container div {
+    display: flex;
+    flex-direction: column;
+    animation-name: slide;
+    animation-duration: 500ms;
+}
+
+@keyframes slide {
+    from {
+      margin-left: -10%;
+    }
+
+    to {
+      margin-left: 0;
+    }
+  }
+
+.container h1 {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.container p {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.container h3 {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 60px;
+    color: #DDD;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.container span {
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 300;
+    color: #FE3636;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.container input, .container select {
+    max-width: 468px;
+    border-radius: 30px;
+    height: 45px;
+    border: 1px solid #DDDDDD;
+    background-color: transparent;
+    padding-left: 20px;
+    outline: none;
+
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 18px;
+    color: #DDDDDD;
+}
+
+.container select {
+    width: 468px;
+    -webkit-appearance: none;
+}
+
+select:focus {
+    outline: 0 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.container button {
+    width: 246px;
+    height: 45px;
+    background-color: #E88BFF;
+    border-radius: 30px;
+
+    font-family: 'Roboto';
+    font-size: 18px;
+    color: #FFF;
+
+    outline: none;
+    border: 0 none;
+    cursor: pointer;
+    margin: 20px auto 0 auto;
+}
+
+@media (max-width: 900px) {
+    .container input, .container select {
+        max-width: 70vw;
+        font-size: 16px;
+    }
+    
+    .container button {
+        width: 40vw;
+        font-size: 14px;
+    }
+    
+    .container h1 {
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .container p {
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 16px;
+    }
+    
+    .container h3 {
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 540px) {
+    .container div {
+        width: 90vw;
+    }
+
+    .container input, .container select {
+        max-width: 90vw;
+        font-size: 16px;
+    }
+
+    .container button {
+        width: 70vw;
+        font-size: 14px;
+    }
+}
